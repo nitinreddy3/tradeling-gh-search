@@ -1,11 +1,24 @@
 import React, { useEffect } from 'react';
+import { get } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux'
 import { setUsers } from './actions/rootActions'
+import Header from './components/Header/Header'
 import './App.css';
+import Grid from './components/Grid/Grid'
+import styled from 'styled-components'
+
+
+const StyledContainer = styled.div`
+  margin: ${props => props.data.length ? "50px 50px" : "50% auto"};
+  width: ${props => props.data.length ? "100%" : "500px"};
+  height: 50px;
+`
 
 const App = () => {
   const dispatch = useDispatch()
-  const { users } = useSelector(state => state.users)
+  const { users, repositories } = useSelector(state => {
+    return state
+  })
 
   useEffect(() => {
     fetchUsers()
@@ -26,9 +39,10 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <p>Hello world</p>
-    </div>
+    <StyledContainer data={[...users, ...repositories]}>
+      <Header />
+      <Grid />
+    </StyledContainer>
   );
 }
 
