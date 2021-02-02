@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { setUsers } from './actions/rootActions'
 import './App.css';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch()
+  const { users } = useSelector(state => state.users)
+
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch('https://api.github.com/search/users?q=nitinreddy3')
+      const data: Array<object> = await response.json()
+      console.log(data);
+      dispatch(setUsers({
+        users: data.items,
+      }))
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>Hello world</p>
     </div>
   );
 }
