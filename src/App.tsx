@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { setUsers } from './actions/rootActions'
+import { setUsers } from './actions/user/user'
 import Header from './components/Header/Header'
 import './App.css';
 import Grid from './components/Grid/Grid'
