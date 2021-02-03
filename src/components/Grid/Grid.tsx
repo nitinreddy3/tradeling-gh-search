@@ -3,13 +3,17 @@ import styled from 'styled-components'
 
 const StyledGridContainer = styled.div`
   display: grid;
-  grid-template-columns: 280px 280px 280px;
-  grid-template-rows: 135px 135px 135px;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
   grid-gap: 20px;
 `
 
 const StyledGridItem = styled.div`
-  border: 1px solid #888;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
 `
 
 const Grid = () => {

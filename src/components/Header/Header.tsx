@@ -6,7 +6,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 const StyledHeader = styled.div`
   margin: ${props => props.data.length ? "50px 50px" : "50% auto"};
-  width: ${props => props.data.length ? "100%" : "500px"};
+  // width: ${props => props.data.length ? "100%" : "500px"};
   height: 50px;
 `
 
