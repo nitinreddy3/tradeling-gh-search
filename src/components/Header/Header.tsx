@@ -30,7 +30,8 @@ const StyledDescriptionText = styled.span`
 
 
 const Header = () => {
-  const { users, repositories } = useSelector(state => state);
+  const { users } = useSelector(state => state.user);
+  const { repositories } = useSelector(state => state.repository);
 
   return (
     <StyledHeader data={[...users, ...repositories]}>

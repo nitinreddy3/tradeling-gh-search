@@ -14,8 +14,11 @@ const StyledContainer = styled.div`
 
 const App = () => {
   const dispatch = useDispatch()
-  const { users, repositories } = useSelector(state => {
-    return state
+  const { users } = useSelector(state => {
+    return state.user
+  })
+  const { repositories } = useSelector(state => {
+    return state.repository
   })
 
   useEffect(() => {

@@ -1,25 +1,11 @@
-import { ACTIONS } from '../constants';
-import { get } from 'lodash';
+import { combineReducers } from 'redux';
 
-const initState = {
-  users: [],
-  repositories: []
-}
+import userReducer from './userReducer';
+import repositoryReducer from './repositoryReducer';
 
-type action = {
-  type: string,
-  payload: object
-}
-const rootReducer = (state = initState, { type, payload }: action) => {
-  switch (type) {
-    case ACTIONS.SET_USERS:
-      return payload ? {
-        ...state,
-        users: get(payload, 'users'),
-      } : state;
-    default:
-      return state;
-  }
-}
+const rootReducer = combineReducers({
+  user: userReducer,
+  repository: repositoryReducer
+});
 
-export default rootReducer
+export default rootReducer;
