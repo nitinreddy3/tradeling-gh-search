@@ -10,12 +10,16 @@ const StyledInput = styled.input`
   margin-right: 10px
 `
 
+const StyledWrapper = styled.span`
+  display: inline-block
+`
+
 const SearchBar = () => {
   return (
-    <div>
+    <StyledWrapper>
       <StyledInput type="search" placeholder="Start typing to search..." />
       <SelectDropDown />
-    </div>
+    </StyledWrapper>
   )
 }
 

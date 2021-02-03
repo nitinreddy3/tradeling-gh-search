@@ -5,9 +5,6 @@ import { useSelector } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
 
 const StyledHeader = styled.div`
-  margin: ${props => props.data.length ? "50px 50px" : "50% auto"};
-  // width: ${props => props.data.length ? "100%" : "500px"};
-  height: 50px;
 `
 
 const StyledWrapper = styled.div`
@@ -31,6 +28,7 @@ const StyledDescriptionText = styled.span`
   text-align: start;
 `
 
+
 const Header = () => {
   const { users, repositories } = useSelector(state => state);
 
@@ -38,10 +36,10 @@ const Header = () => {
     <StyledHeader data={[...users, ...repositories]}>
       <StyledWrapper >
         <ImageWrapper src={GitHub} alt="GitHub" />
-        <div>
+        <>
           <StyledHeadingText>GitHub Searcher</StyledHeadingText>
           <StyledDescriptionText>Search users or repositories below</StyledDescriptionText>
-        </div>
+        </>
       </StyledWrapper>
       <SearchBar />
     </StyledHeader>

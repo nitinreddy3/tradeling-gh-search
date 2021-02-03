@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 const StyledGridContainer = styled.div`
   display: grid;
+  @media (max-width: 768px) {
+    grid-template-columns: auto auto;
+  }
   grid-template-columns: auto auto auto;
   padding: 10px;
   grid-gap: 20px;
