@@ -1,4 +1,4 @@
-import { ACTIONS } from '../constants';
+import { FETCH_USERS_REQUESTS } from './userTypes'
 import { get } from 'lodash';
 
 const initState = {
@@ -11,7 +11,7 @@ type action = {
 }
 const userReducer = (state = initState, { type, payload }: action) => {
   switch (type) {
-    case ACTIONS.SET_USERS:
+    case FETCH_USERS_REQUESTS:
       return payload ? {
         ...state,
         users: get(payload, 'users'),

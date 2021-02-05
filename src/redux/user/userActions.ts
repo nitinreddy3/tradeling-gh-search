@@ -1,8 +1,8 @@
-import { ACTIONS } from '../../constants'
+import { FETCH_USERS_REQUESTS } from './userTypes'
 
 export function setUsers(users: Array<object>) {
   return {
-    type: ACTIONS.SET_USERS,
+    type: FETCH_USERS_REQUESTS,
     payload: users
   }
 }

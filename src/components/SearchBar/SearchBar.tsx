@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { debounce } from 'lodash'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
 
 const StyledInput = styled.input`
@@ -13,6 +14,8 @@ const StyledInput = styled.input`
 const StyledWrapper = styled.span`
   display: inline-block
 `
+
+// const delayedQuery = useCallback(debounce(q => fetchContainers(q), 2000), []);
 
 const SearchBar = () => {
   return (

@@ -1,5 +1,5 @@
-import * as actions from './repository';
-import { ACTIONS } from '../../constants'
+import * as actions from '../../actions/repository/repository';
+import { FETCH_REPOSITORIES_REQUESTS } from '../repositoryTypes'
 
 describe('actions', () => {
   it('should create an action to fetch the repositories', () => {
@@ -8,7 +8,7 @@ describe('actions', () => {
       { login: 'Flutter', id: 2 },
     ]
     const expectedAction = {
-      type: ACTIONS.SET_REPOSITORIES,
+      type: FETCH_REPOSITORIES_REQUESTS,
       payload: repositories
     }
     expect(actions.setRepositories(repositories)).toEqual(expectedAction)
