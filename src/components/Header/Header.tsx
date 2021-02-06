@@ -34,8 +34,6 @@ const StyledDescriptionText = styled.span`
 
 
 const Header = () => {
-  const { users, repositories } = useSelector(state => state.search);
-
   return (
     <StyledHeader>
       <StyledWrapper >

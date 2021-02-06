@@ -16,49 +16,36 @@ export function setSearchCriteria(criteria: string) {
   }
 }
 
-export function setSearchQuery(query: string) {
-  return {
-    type: SET_QUERY,
-    payload: query
-  }
-}
+export const setSearchQuery = (query: string) => ({
+  type: SET_QUERY,
+  payload: query
+})
 
-export const fetchUsersRequest = () => {
-  return {
-    type: FETCH_USERS_REQUESTS,
-  }
+export const fetchUsersRequest = () => ({
+  type: FETCH_USERS_REQUESTS,
 }
+)
 
-export const fetchUsersSuccess = (users: Array<object>) => {
-  return {
-    type: FETCH_USERS_SUCCESS,
-    payload: users
-  }
-}
+export const fetchUsersSuccess = (users: Array<object>) => ({
+  type: FETCH_USERS_SUCCESS,
+  payload: users
+})
 
-export const fetchUsersError = (error: object) => {
-  return {
-    type: FETCH_USERS_ERROR,
-    payload: error
-  }
-}
+export const fetchUsersError = (error: object) => ({
+  type: FETCH_USERS_ERROR,
+  payload: error
+})
 
-export const fetchRepositoriesRequest = () => {
-  return {
-    type: FETCH_REPOSITORIES_REQUESTS,
-  }
-}
+export const fetchRepositoriesRequest = () => ({
+  type: FETCH_REPOSITORIES_REQUESTS,
+})
 
-export const fetchRepositoriesSuccess = (repositories: Array<object>) => {
-  return {
-    type: FETCH_REPOSITORIES_SUCCESS,
-    payload: repositories
-  }
-}
+export const fetchRepositoriesSuccess = (repositories: Array<object>) => ({
+  type: FETCH_REPOSITORIES_SUCCESS,
+  payload: repositories
+})
 
-export const fetchRepositoriesError = (error: object) => {
-  return {
-    type: FETCH_REPOSITORIES_ERROR,
-    payload: error
-  }
-}
+export const fetchRepositoriesError = (error: object) => ({
+  type: FETCH_REPOSITORIES_ERROR,
+  payload: error
+})

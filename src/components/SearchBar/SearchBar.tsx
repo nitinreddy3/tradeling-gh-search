@@ -23,6 +23,7 @@ const StyledWrapper = styled.span`
 const SearchBar = () => {
   const dispatch = useDispatch()
   const { query, criteria } = useSelector(state => state.search)
+
   const fetchResponses = async (query: string) => {
     if (criteria === 'users') {
       dispatch(fetchUsersRequest())
