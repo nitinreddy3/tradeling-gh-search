@@ -9,14 +9,14 @@ import {
   FETCH_REPOSITORIES_ERROR,
 } from './searchTypes'
 
-export function setSearchCriteria(criteria: Array<object>) {
+export function setSearchCriteria(criteria: string) {
   return {
     type: SET_CRITERIA,
     payload: criteria
   }
 }
 
-export function setSearchQuery(query: Array<object>) {
+export function setSearchQuery(query: string) {
   return {
     type: SET_QUERY,
     payload: query

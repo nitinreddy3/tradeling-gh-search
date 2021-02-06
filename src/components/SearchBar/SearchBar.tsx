@@ -23,7 +23,7 @@ const StyledWrapper = styled.span`
 const SearchBar = () => {
   const dispatch = useDispatch()
   const { query, criteria } = useSelector(state => state.search)
-  const fetchResponses = async (query: string, criteria: string) => {
+  const fetchResponses = async (query: string) => {
     if (criteria === 'users') {
       dispatch(fetchUsersRequest())
       try {
@@ -50,7 +50,7 @@ const SearchBar = () => {
     dispatch(fetchRepositoriesSuccess([]));
   }
 
-  const delayedQuery = useCallback(debounce(q => fetchResponses(q, criteria), 1000), []);
+  const delayedQuery = useCallback(debounce(q => fetchResponses(q), 1000), []);
 
   return (
     <StyledWrapper>

@@ -9,28 +9,22 @@ const StyledGridItem = styled.div`
   text-align: center;
 `
 
-const StyledImage = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-`
-
 const StyledNameField = styled.p`
  font-size: 14px;
  text-align: left;
  margin: 5px;
 `
 
-
-
 interface Props {
   data: object,
 }
+
 const RepositoryGrid = ({ data }: Props) => {
   return (
     <StyledGridItem>
       <StyledNameField>Name: {get(data, 'name')}</StyledNameField>
-      <StyledNameField>Owner name: {get(data, 'owner.login')}</StyledNameField>
+      <StyledNameField>Author: {get(data, 'owner.login')}</StyledNameField>
+      <StyledNameField>Stars: {get(data, 'stargazers_count')}</StyledNameField>
     </StyledGridItem >
   )
 }

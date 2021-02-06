@@ -29,6 +29,7 @@ const StyledHeadingText = styled.span`
 const StyledDescriptionText = styled.span`
   display: block;
   text-align: start;
+  color: #666666;
 `
 
 
