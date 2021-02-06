@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
 
 const StyledHeader = styled.div`
+  margin-bottom: 10px;
+  width: max-content;
 `
 
 const StyledWrapper = styled.div`
@@ -34,7 +36,7 @@ const Header = () => {
   const { users, repositories } = useSelector(state => state.search);
 
   return (
-    <StyledHeader data={getLength([...users, ...repositories])}>
+    <StyledHeader>
       <StyledWrapper >
         <ImageWrapper src={GitHub} alt="GitHub" />
         <>

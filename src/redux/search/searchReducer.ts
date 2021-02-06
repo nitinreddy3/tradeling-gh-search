@@ -27,15 +27,15 @@ type action = {
 const searchReducer = (state = initState, { type, payload }: action) => {
   switch (type) {
     case SET_CRITERIA:
-      return payload ? {
+      return {
         ...state,
         criteria: payload,
-      } : state;
+      }
     case SET_QUERY:
-      return payload ? {
+      return {
         ...state,
-        query: get(payload, 'query'),
-      } : state;
+        query: payload,
+      }
     case FETCH_USERS_REQUESTS:
       return {
         ...state,
