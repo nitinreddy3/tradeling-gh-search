@@ -7,6 +7,7 @@ const StyledGridItem = styled.div`
   padding: 20px;
   font-size: 30px;
   text-align: center;
+  height: 100px;
 `
 
 const StyledImage = styled.img`

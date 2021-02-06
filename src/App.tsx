@@ -23,10 +23,11 @@ const StyledContainer = styled.div`
 `
 
 const App = () => {
-  const { users, repositories, criteria, loading } = useSelector(state => {
+  const { users, repositories, criteria, loading, query } = useSelector(state => {
     return state.search
   })
 
+  console.log(`criteria: ${criteria}, query: ${query}`)
   return (
     <StyledContainer data={getLength([...users, ...repositories])}>
       <Header />

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { debounce } from 'lodash'
 import { SEARCH_ENDPOINT } from '../../constants'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
-import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, setSearchQuery } from '../../redux/search/searchActions'
+import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, setSearchQuery, setSearchCriteria } from '../../redux/search/searchActions'
 import useFetchData from '../../hooks/useFetchData'
 
 const StyledInput = styled.input`
@@ -18,7 +18,6 @@ const StyledInput = styled.input`
 const StyledWrapper = styled.span`
   display: inline-block
 `
-
 
 const SearchBar = () => {
   const dispatch = useDispatch()
@@ -47,11 +46,12 @@ const SearchBar = () => {
   }
 
   const resetData = () => {
+    dispatch(setSearchCriteria(criteria))
     dispatch(fetchUsersSuccess([]));
     dispatch(fetchRepositoriesSuccess([]));
   }
 
-  const delayedQuery = useCallback(debounce(q => fetchResponses(q), 1000), []);
+  const delayedQuery = debounce(q => fetchResponses(q), 1000);
 
   return (
     <StyledWrapper>
