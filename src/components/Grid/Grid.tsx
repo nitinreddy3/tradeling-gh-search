@@ -11,6 +11,10 @@ const StyledGridContainer = styled.div`
   }
   grid-template-columns: auto auto auto;
   grid-gap: 20px;
+  ${({ data }) => data.length && `
+     height: 75vh;
+     overflow-y: auto;
+  `}
 `
 
 interface Props {
@@ -21,7 +25,7 @@ interface Props {
 
 const Grid = ({ data, criteria, loading }: Props) => {
   return (
-    <StyledGridContainer>
+    <StyledGridContainer data={data}>
       {
         loading ?
           <p>Loading...</p> :
