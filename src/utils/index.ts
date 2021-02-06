@@ -1,0 +1,1 @@
+export const getLength = (list) => list.length;

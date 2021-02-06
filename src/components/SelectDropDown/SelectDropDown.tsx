@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { map, get } from 'lodash'
+import { useDispatch, useSelector } from 'react-redux'
+import { SELECT_OPTIONS } from '../../constants'
+import { setSearchCriteria } from '../../redux/search/searchActions'
 
 const StyledSelect = styled.select`
   padding: 9px;
@@ -10,10 +14,21 @@ const StyledSelect = styled.select`
 `
 
 const SelectDropDown = () => {
+  const { criteria } = useSelector(state => state.search)
+  const dispatch = useDispatch()
+  // const [value, setValue] = useState('')
+
+  const handleChange = (event: Event) => {
+    // setValue(event.target.value);
+    console.log(criteria)
+    dispatch(setSearchCriteria(event.target.value))
+  }
+
   return (
-    <StyledSelect>
-      <option value="Users">Users</option>
-      <option value="Repositories">Repositories</option>
+    <StyledSelect value={criteria} onChange={handleChange}>
+      {
+        map(SELECT_OPTIONS, option => <option key={get(option, 'value')} value={get(option, 'value')}>{get(option, 'label')}</option>)
+      }
     </StyledSelect>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { getLength } from '../../utils'
 import GitHub from '../../images/github.png'
 import { useSelector } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
@@ -30,11 +31,10 @@ const StyledDescriptionText = styled.span`
 
 
 const Header = () => {
-  const { users } = useSelector(state => state.user);
-  const { repositories } = useSelector(state => state.repository);
+  const { users, repositories } = useSelector(state => state.search);
 
   return (
-    <StyledHeader data={[...users, ...repositories]}>
+    <StyledHeader data={getLength([...users, ...repositories])}>
       <StyledWrapper >
         <ImageWrapper src={GitHub} alt="GitHub" />
         <>
