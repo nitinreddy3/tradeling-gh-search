@@ -8,13 +8,38 @@ import {
   FETCH_REPOSITORIES_SUCCESS,
   FETCH_REPOSITORIES_ERROR,
 } from './searchTypes'
+import { SEARCH_ENDPOINT } from '../../constants'
 
-export function setSearchCriteria(criteria: string) {
-  return {
-    type: SET_CRITERIA,
-    payload: criteria
+export const fetchData = (query, criteria) => {
+  if (criteria === 'users') {
+    return async (dispatch) => {
+      dispatch(fetchUsersRequest())
+      try {
+        const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`)
+        const data = await response.json()
+        dispatch(fetchUsersSuccess(data.items))
+      } catch (err) {
+        dispatch(fetchUsersError(err))
+      }
+    }
+  } else {
+    return async (dispatch) => {
+      dispatch(fetchRepositoriesRequest())
+      try {
+        const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`);
+        const data = await response.json();
+        dispatch(fetchRepositoriesSuccess(data.items));
+      } catch (err) {
+        dispatch(fetchRepositoriesError(err.message));
+      }
+    }
   }
 }
+
+export const setSearchCriteria = (criteria: string) => ({
+  type: SET_CRITERIA,
+  payload: criteria
+})
 
 export const setSearchQuery = (query: string) => ({
   type: SET_QUERY,

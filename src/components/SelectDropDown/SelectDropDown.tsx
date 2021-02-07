@@ -4,7 +4,7 @@ import { map, get } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 import { SELECT_OPTIONS, SEARCH_ENDPOINT } from '../../constants'
 import { setSearchCriteria } from '../../redux/search/searchActions'
-import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, setSearchQuery } from '../../redux/search/searchActions'
+import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, fetchData } from '../../redux/search/searchActions'
 
 const StyledSelect = styled.select`
   padding: 9px;
@@ -18,36 +18,10 @@ const SelectDropDown = () => {
   const { criteria, query } = useSelector(state => state.search)
   const dispatch = useDispatch()
 
-  const fetchResponses = async (query: string, criteria: string) => {
-    if (criteria === 'users') {
-      dispatch(fetchUsersRequest())
-      try {
-        const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`);
-        const data = await response.json();
-        console.log(data.items);
-
-        dispatch(fetchUsersSuccess(data.items));
-      } catch (err) {
-        dispatch(fetchUsersError(err.message));
-      }
-    } else if (criteria === 'repositories') {
-      dispatch(fetchRepositoriesRequest())
-      try {
-        const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`);
-        const data = await response.json();
-        console.log(data.items);
-
-        dispatch(fetchRepositoriesSuccess(data.items));
-      } catch (err) {
-        dispatch(fetchRepositoriesError(err.message));
-      }
-    }
-  }
-
   const handleChange = (event: Event) => {
     dispatch(setSearchCriteria(event.target.value))
     if (query.length >= 3) {
-      fetchResponses(query, event.target.value)
+      dispatch(fetchData(query, event.target.value))
     } else {
       resetData()
     }

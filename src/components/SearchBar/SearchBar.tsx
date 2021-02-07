@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { debounce } from 'lodash'
 import { SEARCH_ENDPOINT } from '../../constants'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
-import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, setSearchQuery, setSearchCriteria } from '../../redux/search/searchActions'
+import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, setSearchQuery, fetchData } from '../../redux/search/searchActions'
 import useFetchData from '../../hooks/useFetchData'
 
 const StyledInput = styled.input`
@@ -23,35 +23,12 @@ const SearchBar = () => {
   const dispatch = useDispatch()
   const { query, criteria } = useSelector(state => state.search)
 
-  const fetchResponses = async (query: string) => {
-    if (criteria === 'users') {
-      dispatch(fetchUsersRequest())
-      try {
-        const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`);
-        const data = await response.json();
-        dispatch(fetchUsersSuccess(data.items));
-      } catch (err) {
-        dispatch(fetchUsersError(err.message));
-      }
-    } else if (criteria === 'repositories') {
-      dispatch(fetchRepositoriesRequest())
-      try {
-        const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`);
-        const data = await response.json();
-        dispatch(fetchRepositoriesSuccess(data.items));
-      } catch (err) {
-        dispatch(fetchRepositoriesError(err.message));
-      }
-    }
-  }
-
   const resetData = () => {
-    dispatch(setSearchCriteria(criteria))
     dispatch(fetchUsersSuccess([]));
     dispatch(fetchRepositoriesSuccess([]));
   }
 
-  const delayedQuery = debounce(q => fetchResponses(q), 1000);
+  const delayedQuery = debounce(q => dispatch(fetchData(q, criteria)), 1000);
 
   return (
     <StyledWrapper>
