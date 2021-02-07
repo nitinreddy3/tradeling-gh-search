@@ -22,9 +22,7 @@ const StyledContainer = styled.div`
 `
 
 const App: React.FC<{}> = () => {
-  const { users, repositories, criteria, loading, error } = useSelector((state: SearchState) => {
-    return state.search
-  })
+  const { users, repositories, criteria, loading, error } = useSelector((state: SearchState) => state.search)
 
   return (
     <StyledContainer data={([...users, ...repositories])}>
