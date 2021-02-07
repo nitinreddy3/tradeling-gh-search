@@ -23,7 +23,7 @@ const StyledWrapper = styled.span`
 
 const SearchBar: React.FC<{}> = () => {
   const dispatch = useDispatch()
-  const { query, criteria, users, repositories } = useSelector((state: SearchState) => state.search)
+  const { query, criteria, users, repositories, error } = useSelector((state: SearchState) => state.search)
 
   const delayedQuery = debounce((q: string) => {
     if (!isResultForQuery(criteria, q, users, repositories)) {
@@ -45,7 +45,7 @@ const SearchBar: React.FC<{}> = () => {
   return (
     <StyledWrapper>
       <StyledInput type="search" placeholder={SEARCH_LABEL} onChange={handleChange} value={query} />
-      <SelectDropDown users={users} repositories={repositories} criteria={criteria} query={query} />
+      <SelectDropDown users={users} repositories={repositories} criteria={criteria} query={query} error={error} />
     </StyledWrapper>
   )
 }

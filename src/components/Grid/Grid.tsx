@@ -20,13 +20,15 @@ const StyledGridContainer = styled.div`
 `
 
 
-const Grid: React.FC<GridProps> = ({ data, criteria, loading }) => {
+const Grid: React.FC<GridProps> = ({ data, criteria, loading, error }) => {
   return (
     <StyledGridContainer data={data}>
       {
         loading ?
           <p>Loading...</p> :
-          map(data, (i: { id: string }) => isEqual(criteria, USERS) ? <UserGrid key={i.id} data={i} /> : <RepositoryGrid key={i.id} data={i} />)
+          error ?
+            <p>{error}</p> :
+            map(data, (i: { id: string }) => isEqual(criteria, USERS) ? <UserGrid key={i.id} data={i} /> : <RepositoryGrid key={i.id} data={i} />)
       }
     </StyledGridContainer>
   )
