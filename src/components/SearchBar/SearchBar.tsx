@@ -25,13 +25,13 @@ const SearchBar: React.FC<{}> = () => {
   const dispatch = useDispatch()
   const { query, criteria, users, repositories } = useSelector((state: SearchState) => state.search)
 
-  const delayedQuery = debounce(q => {
+  const delayedQuery = debounce((q: string) => {
     if (!isResultForQuery(criteria, q, users, repositories)) {
       dispatch(fetchData(q, criteria))
     }
   }, 2500);
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: any } }) => {
     const { value } = event.target;
     dispatch(setSearchQuery(value.trim()))
     if (value.trim().length >= 3) {

@@ -26,7 +26,7 @@ const Grid: React.FC<GridProps> = ({ data, criteria, loading }) => {
       {
         loading ?
           <p>Loading...</p> :
-          map(data, i => isEqual(criteria, USERS) ? <UserGrid key={i.id} data={i} /> : <RepositoryGrid key={i.id} data={i} />)
+          map(data, (i: { id: string }) => isEqual(criteria, USERS) ? <UserGrid key={i.id} data={i} /> : <RepositoryGrid key={i.id} data={i} />)
       }
     </StyledGridContainer>
   )

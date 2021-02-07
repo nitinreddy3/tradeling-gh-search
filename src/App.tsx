@@ -2,16 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 import { isEqual } from 'lodash'
 import styled from 'styled-components'
-import { getLength } from './utils'
 import Header from './components/Header/Header'
 import Grid from './components/Grid/Grid'
 import { USERS } from "./constants"
 import { SearchState, StyledProp } from './interfaces'
 
 const StyledContainer = styled.div`
-  margin: ${({ data }: StyledProp) => data ? "50px 50px" : "0"};
-  width: ${({ data }: StyledProp) => data ? "auto" : "auto"};
-  ${({ data }: StyledProp) => !data && `
+  margin: ${({ data }: StyledProp) => data.length ? "50px 50px" : "0"};
+  width: ${({ data }: StyledProp) => data.length ? "auto" : "auto"};
+  ${({ data }: StyledProp) => !data.length && `
     position:  absolute;
     left: 50%;
     top: 50%;
@@ -28,7 +27,7 @@ const App: React.FC<{}> = () => {
   })
 
   return (
-    <StyledContainer data={getLength([...users, ...repositories])}>
+    <StyledContainer data={([...users, ...repositories])}>
       <Header />
       <Grid
         data={isEqual(criteria, USERS) ? users : repositories}

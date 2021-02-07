@@ -18,7 +18,7 @@ const StyledSelect = styled.select`
 const SelectDropDown: React.FC<SearchProps> = ({ users, repositories, query, criteria }) => {
   const dispatch = useDispatch()
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { value: any } }) => {
     const { value } = event.target;
     dispatch(setSearchCriteria(value))
     if (query.length >= 3) {
@@ -33,7 +33,7 @@ const SelectDropDown: React.FC<SearchProps> = ({ users, repositories, query, cri
   return (
     <StyledSelect value={criteria} onChange={handleChange}>
       {
-        map(SELECT_OPTIONS, option => <option key={get(option, 'value')} value={get(option, 'value')}>{get(option, 'label')}</option>)
+        map(SELECT_OPTIONS, (option: object) => <option key={get(option, 'value')} value={get(option, 'value')}>{get(option, 'label')}</option>)
       }
     </StyledSelect>
   )

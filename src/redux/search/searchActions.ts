@@ -15,7 +15,7 @@ import { SEARCH_ENDPOINT, USERS } from '../../constants'
 
 export const fetchData = (query: string, criteria: string) => {
   if (isEqual(criteria, USERS)) {
-    return async (dispatch) => {
+    return async (dispatch: (arg0: { type: string; payload?: object | object[]; }) => void) => {
       dispatch(fetchUsersRequest())
       try {
         const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`)
@@ -26,7 +26,7 @@ export const fetchData = (query: string, criteria: string) => {
       }
     }
   } else {
-    return async (dispatch) => {
+    return async (dispatch: (arg0: { type: string; payload?: object | object[]; }) => void) => {
       dispatch(fetchRepositoriesRequest())
       try {
         const response = await fetch(`${SEARCH_ENDPOINT}/${criteria}?q=${query}`);
@@ -40,7 +40,7 @@ export const fetchData = (query: string, criteria: string) => {
 }
 
 export const resetData = () => {
-  return async (dispatch) => {
+  return async (dispatch: (arg0: { type: string; payload: object[]; }) => void) => {
     dispatch(clearUsers([]));
     dispatch(clearRepositories([]));
   }
