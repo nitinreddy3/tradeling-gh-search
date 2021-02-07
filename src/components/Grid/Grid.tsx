@@ -14,7 +14,7 @@ const StyledGridContainer = styled.div`
   grid-template-columns: auto auto auto;
   grid-gap: 20px;
   ${({ data }: StyledProp) => data.length && `
-     height: 75vh;
+     max-height: 75vh;
      overflow-y: auto;
   `}
 `

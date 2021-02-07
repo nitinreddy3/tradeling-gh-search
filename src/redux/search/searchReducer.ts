@@ -1,3 +1,4 @@
+import { uniqBy } from 'lodash'
 import {
   SET_CRITERIA,
   SET_QUERY,
@@ -57,7 +58,7 @@ const searchReducer = (state = initState, { type, payload }: action) => {
       return {
         ...state,
         loading: false,
-        users: [...state.users, ...payload],
+        users: uniqBy([...state.users, ...payload], 'login'),
         error: ''
       }
     case FETCH_USERS_ERROR:
@@ -78,7 +79,7 @@ const searchReducer = (state = initState, { type, payload }: action) => {
       return {
         ...state,
         loading: false,
-        repositories: [...state.repositories, ...payload],
+        repositories: uniqBy([...state.repositories, ...payload], 'name'),
         error: ''
       }
     case FETCH_REPOSITORIES_ERROR:
