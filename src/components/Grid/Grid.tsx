@@ -4,7 +4,7 @@ import { isEqual, map } from 'lodash'
 import UserGrid from './UserGrid'
 import RepositoryGrid from './RepositoryGrid'
 import { USERS } from "../../constants"
-import { StyledProp } from '../../interfaces'
+import { StyledProp, GridProps } from '../../interfaces'
 
 const StyledGridContainer = styled.div`
   display: grid;
@@ -19,13 +19,8 @@ const StyledGridContainer = styled.div`
   `}
 `
 
-interface Props {
-  data: Array<object>,
-  criteria: string,
-  loading: boolean,
-}
 
-const Grid = ({ data, criteria, loading }: Props) => {
+const Grid: React.FC<GridProps> = ({ data, criteria, loading }) => {
   return (
     <StyledGridContainer data={data}>
       {

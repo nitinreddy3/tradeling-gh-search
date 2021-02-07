@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { isEqual } from 'lodash'
 import styled from 'styled-components'
 import { getLength } from './utils'
@@ -22,7 +22,7 @@ const StyledContainer = styled.div`
   }
 `
 
-const App = () => {
+const App: React.FC<{}> = () => {
   const { users, repositories, criteria, loading } = useSelector((state: SearchState) => {
     return state.search
   })

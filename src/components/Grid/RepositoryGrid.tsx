@@ -1,12 +1,9 @@
 import React from 'react'
 import { get } from 'lodash'
 import { StyledGridItem, StyledNameField, StyledAnchor } from '../Common/CommonComponents'
+import { RepositoryUserProps } from '../../interfaces'
 
-interface Props {
-  data: object,
-}
-
-const RepositoryGrid = ({ data }: Props) => {
+const RepositoryGrid: React.FC<RepositoryUserProps> = ({ data }) => {
   return (
     <StyledGridItem>
       <StyledNameField>Name: {get(data, 'name')}</StyledNameField>

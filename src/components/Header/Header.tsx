@@ -31,7 +31,7 @@ const StyledDescriptionText = styled.span`
 `
 
 
-const Header = () => {
+const Header: React.FC<{}> = () => {
   return (
     <StyledHeader>
       <StyledWrapper >

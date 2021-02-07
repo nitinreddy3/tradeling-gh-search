@@ -12,7 +12,16 @@ import {
 } from './searchTypes'
 import { USERS } from '../../constants'
 
-const initState = {
+interface InitState {
+  criteria: string
+  query: string
+  users: Array<object>
+  repositories: Array<object>,
+  loading: boolean,
+  error: string
+}
+
+const initState: InitState = {
   criteria: USERS,
   query: "",
   users: [],
@@ -23,7 +32,7 @@ const initState = {
 
 type action = {
   type: string,
-  payload: object | Array<Object>
+  payload: any
 }
 
 const searchReducer = (state = initState, { type, payload }: action) => {

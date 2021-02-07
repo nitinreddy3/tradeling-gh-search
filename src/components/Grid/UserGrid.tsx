@@ -1,12 +1,11 @@
 import React from 'react'
 import { get } from 'lodash'
 import { StyledGridItem, StyledNameField, StyledAnchor, StyledImage } from '../Common/CommonComponents'
+import { RepositoryUserProps } from '../../interfaces'
 
-interface Props {
-  data: object,
-}
 
-const UserGrid = ({ data }: Props) => {
+
+const UserGrid: React.FC<RepositoryUserProps> = ({ data }) => {
   return (
     <StyledGridItem>
       <StyledImage src={get(data, 'avatar_url')} alt={get(data, 'login')} />

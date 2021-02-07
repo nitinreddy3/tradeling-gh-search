@@ -21,7 +21,7 @@ const StyledWrapper = styled.span`
   display: inline-block
 `
 
-const SearchBar = () => {
+const SearchBar: React.FC<{}> = () => {
   const dispatch = useDispatch()
   const { query, criteria, users, repositories } = useSelector((state: SearchState) => state.search)
 

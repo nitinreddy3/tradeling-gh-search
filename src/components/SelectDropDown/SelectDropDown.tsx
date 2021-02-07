@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { SELECT_OPTIONS } from '../../constants'
 import { setSearchCriteria, fetchData, resetData } from '../../redux/search/searchActions';
 import { isResultForQuery } from '../../utils'
-
+import { SearchProps } from '../../interfaces'
 
 const StyledSelect = styled.select`
   padding: 9px;
@@ -15,14 +15,7 @@ const StyledSelect = styled.select`
   color:#888888;
 `
 
-interface Props {
-  query: string;
-  criteria: string;
-  users: Array<object>;
-  repositories: Array<object>;
-}
-
-const SelectDropDown = ({ users, repositories, query, criteria }: Props) => {
+const SelectDropDown: React.FC<SearchProps> = ({ users, repositories, query, criteria }) => {
   const dispatch = useDispatch()
 
   const handleChange = (event) => {

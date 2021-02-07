@@ -13,7 +13,7 @@ import {
 } from './searchTypes'
 import { SEARCH_ENDPOINT, USERS } from '../../constants'
 
-export const fetchData = (query, criteria) => {
+export const fetchData = (query: string, criteria: string) => {
   if (isEqual(criteria, USERS)) {
     return async (dispatch) => {
       dispatch(fetchUsersRequest())
