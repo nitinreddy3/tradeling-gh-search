@@ -12,7 +12,7 @@
 - I have used redux-thunk to make sure that the logic to fetch the data is isolated in the redux actions, and not in the component
   to make sure that I can use the same logic across different components whenever required.
 
-##Decisions
+## Decisions
 - Used the ES6+ syntax wherever required liek async/await, arrow functions, function shorthand
 
 ## Steps to run the project
