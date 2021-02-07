@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { getLength } from '../../utils'
 import GitHub from '../../images/github.png'
-import { useSelector } from 'react-redux'
 import SearchBar from '../SearchBar/SearchBar'
 
 const StyledHeader = styled.div`

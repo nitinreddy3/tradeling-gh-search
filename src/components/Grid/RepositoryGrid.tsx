@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { get } from 'lodash'
 import { StyledGridItem, StyledNameField, StyledAnchor } from '../Common/CommonComponents'
 

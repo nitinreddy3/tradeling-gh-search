@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { isEqual, map } from 'lodash'
 import UserGrid from './UserGrid'

@@ -11,7 +11,6 @@ import {
   CLEAR_REPOSITORIES
 } from './searchTypes'
 import { USERS } from '../../constants'
-import { isEmpty } from 'lodash';
 
 const initState = {
   criteria: USERS,
