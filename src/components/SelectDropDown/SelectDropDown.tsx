@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { map, get } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 import { SELECT_OPTIONS } from '../../constants'
-import { fetchUsersSuccess, setSearchCriteria, fetchRepositoriesSuccess, fetchData } from '../../redux/search/searchActions';
+import { setSearchCriteria, fetchData, clearUsers, clearRepositories } from '../../redux/search/searchActions';
 import { isResultForQuery } from '../../utils'
 
 
@@ -38,8 +38,8 @@ const SelectDropDown = ({ users, repositories, query, criteria }: Props) => {
   }
 
   const resetData = () => {
-    dispatch(fetchUsersSuccess([]));
-    dispatch(fetchRepositoriesSuccess([]));
+    dispatch(clearUsers([]));
+    dispatch(clearRepositories([]));
   }
 
   return (

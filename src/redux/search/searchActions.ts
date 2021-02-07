@@ -8,6 +8,8 @@ import {
   FETCH_REPOSITORIES_REQUESTS,
   FETCH_REPOSITORIES_SUCCESS,
   FETCH_REPOSITORIES_ERROR,
+  CLEAR_USERS,
+  CLEAR_REPOSITORIES,
 } from './searchTypes'
 import { SEARCH_ENDPOINT, USERS } from '../../constants'
 
@@ -74,4 +76,14 @@ export const fetchRepositoriesSuccess = (repositories: Array<object>) => ({
 export const fetchRepositoriesError = (error: object) => ({
   type: FETCH_REPOSITORIES_ERROR,
   payload: error
+})
+
+export const clearUsers = (users: Array<object>) => ({
+  type: CLEAR_USERS,
+  payload: users
+})
+
+export const clearRepositories = (repositories: Array<object>) => ({
+  type: CLEAR_REPOSITORIES,
+  payload: repositories
 })

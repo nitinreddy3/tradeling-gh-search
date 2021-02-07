@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { debounce, filter, includes, isEqual, toLower } from 'lodash'
 import { USERS, SEARCH_LABEL } from '../../constants'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
-import { fetchUsersSuccess, fetchRepositoriesSuccess, setSearchQuery, fetchData } from '../../redux/search/searchActions'
+import { setSearchQuery, fetchData, clearUsers, clearRepositories } from '../../redux/search/searchActions'
 import { isResultForQuery } from '../../utils'
 
 const StyledInput = styled.input`
@@ -24,8 +24,8 @@ const SearchBar = () => {
   const { query, criteria, users, repositories } = useSelector(state => state.search)
 
   const resetData = () => {
-    dispatch(fetchUsersSuccess([]));
-    dispatch(fetchRepositoriesSuccess([]));
+    dispatch(clearUsers([]));
+    dispatch(clearRepositories([]));
   }
 
   const delayedQuery = debounce(q => {
