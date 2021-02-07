@@ -36,3 +36,8 @@
  ```js
   $ npm start
 ```
+
+5. To run the tests
+```js
+$ npm run test
+```
