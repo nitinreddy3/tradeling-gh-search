@@ -3,6 +3,7 @@ export interface Search {
   repositories: Array<object>;
   criteria: string;
   loading: boolean;
+  query: string;
 }
 export interface SearchState {
   search: Search

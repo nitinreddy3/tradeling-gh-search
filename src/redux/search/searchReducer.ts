@@ -24,7 +24,7 @@ const initState = {
 
 type action = {
   type: string,
-  payload: object
+  payload: object | Array<Object>
 }
 
 const searchReducer = (state = initState, { type, payload }: action) => {

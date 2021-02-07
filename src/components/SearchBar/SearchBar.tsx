@@ -6,7 +6,7 @@ import { SEARCH_LABEL } from '../../constants'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
 import { setSearchQuery, fetchData, resetData } from '../../redux/search/searchActions'
 import { isResultForQuery } from '../../utils'
-import { SearchState } from './interfaces'
+import { SearchState } from '../../interfaces'
 
 
 const StyledInput = styled.input`
