@@ -49,7 +49,7 @@ const searchReducer = (state = initState, { type, payload }: action) => {
       return {
         ...state,
         loading: false,
-        users: isEmpty(payload) ? [] : [...state.users, ...payload],
+        users: [...state.users, ...payload],
         error: ''
       }
     case FETCH_USERS_ERROR:

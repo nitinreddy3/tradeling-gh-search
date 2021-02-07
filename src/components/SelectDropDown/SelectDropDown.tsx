@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { map, get } from 'lodash'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { SELECT_OPTIONS } from '../../constants'
-import { setSearchCriteria, fetchData, clearUsers, clearRepositories } from '../../redux/search/searchActions';
+import { setSearchCriteria, fetchData, resetData } from '../../redux/search/searchActions';
 import { isResultForQuery } from '../../utils'
 
 
@@ -25,7 +25,7 @@ interface Props {
 const SelectDropDown = ({ users, repositories, query, criteria }: Props) => {
   const dispatch = useDispatch()
 
-  const handleChange = (event: Event) => {
+  const handleChange = (event) => {
     const { value } = event.target;
     dispatch(setSearchCriteria(value))
     if (query.length >= 3) {
@@ -33,13 +33,8 @@ const SelectDropDown = ({ users, repositories, query, criteria }: Props) => {
         dispatch(fetchData(query, value))
       }
     } else {
-      resetData()
+      dispatch(resetData())
     }
-  }
-
-  const resetData = () => {
-    dispatch(clearUsers([]));
-    dispatch(clearRepositories([]));
   }
 
   return (

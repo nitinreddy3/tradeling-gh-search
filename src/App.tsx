@@ -5,13 +5,13 @@ import styled from 'styled-components'
 import { getLength } from './utils'
 import Header from './components/Header/Header'
 import Grid from './components/Grid/Grid'
-import './App.css';
-
+import { USERS } from "./constants"
+import { SearchState, StyledProp } from './interfaces'
 
 const StyledContainer = styled.div`
-  margin: ${props => props.data ? "50px 50px" : "0"};
-  width: ${props => props.data ? "auto" : "auto"};
-  ${({ data }) => !data && `
+  margin: ${({ data }: StyledProp) => data ? "50px 50px" : "0"};
+  width: ${({ data }: StyledProp) => data ? "auto" : "auto"};
+  ${({ data }: StyledProp) => !data && `
     position:  absolute;
     left: 50%;
     top: 50%;
@@ -23,16 +23,15 @@ const StyledContainer = styled.div`
 `
 
 const App = () => {
-  const { users, repositories, criteria, loading, query } = useSelector(state => {
+  const { users, repositories, criteria, loading } = useSelector((state: SearchState) => {
     return state.search
   })
 
-  console.log(`criteria: ${criteria}, query: ${query}`)
   return (
     <StyledContainer data={getLength([...users, ...repositories])}>
       <Header />
       <Grid
-        data={isEqual(criteria, 'users') ? users : repositories}
+        data={isEqual(criteria, USERS) ? users : repositories}
         criteria={criteria}
         loading={loading}
       />

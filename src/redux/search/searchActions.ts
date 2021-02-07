@@ -39,6 +39,13 @@ export const fetchData = (query, criteria) => {
   }
 }
 
+export const resetData = () => {
+  return async (dispatch) => {
+    dispatch(clearUsers([]));
+    dispatch(clearRepositories([]));
+  }
+}
+
 export const setSearchCriteria = (criteria: string) => ({
   type: SET_CRITERIA,
   payload: criteria

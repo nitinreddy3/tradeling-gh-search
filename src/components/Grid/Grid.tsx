@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import styled from 'styled-components'
 import { isEqual, map } from 'lodash'
 import UserGrid from './UserGrid'
 import RepositoryGrid from './RepositoryGrid'
+import { USERS } from "../../constants"
 
 const StyledGridContainer = styled.div`
   display: grid;
@@ -18,7 +19,7 @@ const StyledGridContainer = styled.div`
 `
 
 interface Props {
-  data: object,
+  data: Array<object>,
   criteria: string,
   loading: boolean,
 }
@@ -29,7 +30,7 @@ const Grid = ({ data, criteria, loading }: Props) => {
       {
         loading ?
           <p>Loading...</p> :
-          map(data, i => isEqual(criteria, 'users') ? <UserGrid key={i.id} data={i} /> : <RepositoryGrid key={i.id} data={i} />)
+          map(data, i => isEqual(criteria, USERS) ? <UserGrid key={i.id} data={i} /> : <RepositoryGrid key={i.id} data={i} />)
       }
     </StyledGridContainer>
   )

@@ -1,11 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
-import { debounce, filter, includes, isEqual, toLower } from 'lodash'
-import { USERS, SEARCH_LABEL } from '../../constants'
+import { debounce } from 'lodash'
+import { SEARCH_LABEL } from '../../constants'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
-import { setSearchQuery, fetchData, clearUsers, clearRepositories } from '../../redux/search/searchActions'
+import { setSearchQuery, fetchData, resetData } from '../../redux/search/searchActions'
 import { isResultForQuery } from '../../utils'
+import { SearchState } from './interfaces'
+
 
 const StyledInput = styled.input`
   padding: 10px;
@@ -21,27 +23,22 @@ const StyledWrapper = styled.span`
 
 const SearchBar = () => {
   const dispatch = useDispatch()
-  const { query, criteria, users, repositories } = useSelector(state => state.search)
-
-  const resetData = () => {
-    dispatch(clearUsers([]));
-    dispatch(clearRepositories([]));
-  }
+  const { query, criteria, users, repositories } = useSelector((state: SearchState) => state.search)
 
   const delayedQuery = debounce(q => {
     if (!isResultForQuery(criteria, q, users, repositories)) {
       dispatch(fetchData(q, criteria))
     }
-  }, 1000);
+  }, 2500);
 
-  const handleChange = (event: Event) => {
+  const handleChange = (event) => {
     const { value } = event.target;
     dispatch(setSearchQuery(value.trim()))
     if (value.trim().length >= 3) {
       delayedQuery(value.trim())
     }
     else if (value.trim().length < 3) {
-      resetData()
+      dispatch(resetData())
     }
   };
 
