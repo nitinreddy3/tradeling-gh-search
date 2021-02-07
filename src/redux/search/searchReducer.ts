@@ -8,10 +8,11 @@ import {
   FETCH_REPOSITORIES_SUCCESS,
   FETCH_REPOSITORIES_ERROR
 } from './searchTypes'
-import { get } from 'lodash';
+import { USERS } from '../../constants'
+import { isEmpty } from 'lodash';
 
 const initState = {
-  criteria: "users",
+  criteria: USERS,
   query: "",
   users: [],
   repositories: [],
@@ -46,7 +47,7 @@ const searchReducer = (state = initState, { type, payload }: action) => {
       return {
         ...state,
         loading: false,
-        users: payload,
+        users: isEmpty(payload) ? [] : [...state.users, ...payload],
         error: ''
       }
     case FETCH_USERS_ERROR:
@@ -67,7 +68,7 @@ const searchReducer = (state = initState, { type, payload }: action) => {
       return {
         ...state,
         loading: false,
-        repositories: payload,
+        repositories: isEmpty(payload) ? [] : [...state.repositories, ...payload],
         error: ''
       }
     case FETCH_REPOSITORIES_ERROR:

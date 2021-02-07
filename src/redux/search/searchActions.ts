@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import {
   SET_QUERY,
   SET_CRITERIA,
@@ -8,10 +9,10 @@ import {
   FETCH_REPOSITORIES_SUCCESS,
   FETCH_REPOSITORIES_ERROR,
 } from './searchTypes'
-import { SEARCH_ENDPOINT } from '../../constants'
+import { SEARCH_ENDPOINT, USERS } from '../../constants'
 
 export const fetchData = (query, criteria) => {
-  if (criteria === 'users') {
+  if (isEqual(criteria, USERS)) {
     return async (dispatch) => {
       dispatch(fetchUsersRequest())
       try {

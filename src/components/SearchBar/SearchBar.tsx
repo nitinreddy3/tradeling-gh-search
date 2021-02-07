@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux'
-import { debounce } from 'lodash'
-import { SEARCH_ENDPOINT } from '../../constants'
+import { debounce, filter, includes, isEqual, toLower } from 'lodash'
+import { USERS, SEARCH_LABEL } from '../../constants'
 import SelectDropDown from '../SelectDropDown/SelectDropDown'
-import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, setSearchQuery, fetchData } from '../../redux/search/searchActions'
-import useFetchData from '../../hooks/useFetchData'
+import { fetchUsersSuccess, fetchRepositoriesSuccess, setSearchQuery, fetchData } from '../../redux/search/searchActions'
+import { isResultForQuery } from '../../utils'
 
 const StyledInput = styled.input`
   padding: 10px;
@@ -21,27 +21,34 @@ const StyledWrapper = styled.span`
 
 const SearchBar = () => {
   const dispatch = useDispatch()
-  const { query, criteria } = useSelector(state => state.search)
+  const { query, criteria, users, repositories } = useSelector(state => state.search)
 
   const resetData = () => {
     dispatch(fetchUsersSuccess([]));
     dispatch(fetchRepositoriesSuccess([]));
   }
 
-  const delayedQuery = debounce(q => dispatch(fetchData(q, criteria)), 1000);
+  const delayedQuery = debounce(q => {
+    if (!isResultForQuery(criteria, q, users, repositories)) {
+      dispatch(fetchData(q, criteria))
+    }
+  }, 1000);
+
+  const handleChange = (event: Event) => {
+    const { value } = event.target;
+    dispatch(setSearchQuery(value.trim()))
+    if (value.trim().length >= 3) {
+      delayedQuery(value.trim())
+    }
+    else if (value.trim().length < 3) {
+      resetData()
+    }
+  };
 
   return (
     <StyledWrapper>
-      <StyledInput type="search" placeholder="Start typing to search..." onChange={(e) => {
-        const { value } = e.target;
-        dispatch(setSearchQuery(value.trim()))
-        if (value.trim().length >= 3) {
-          delayedQuery(value.trim())
-        } else if (value.trim().length < 3) {
-          resetData()
-        }
-      }} value={query} />
-      <SelectDropDown />
+      <StyledInput type="search" placeholder={SEARCH_LABEL} onChange={handleChange} value={query} />
+      <SelectDropDown users={users} repositories={repositories} criteria={criteria} query={query} />
     </StyledWrapper>
   )
 }

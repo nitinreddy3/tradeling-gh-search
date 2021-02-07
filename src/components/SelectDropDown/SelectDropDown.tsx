@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { map, get } from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
-import { SELECT_OPTIONS, SEARCH_ENDPOINT } from '../../constants'
-import { setSearchCriteria } from '../../redux/search/searchActions'
-import { fetchUsersRequest, fetchUsersSuccess, fetchUsersError, fetchRepositoriesRequest, fetchRepositoriesSuccess, fetchRepositoriesError, fetchData } from '../../redux/search/searchActions'
+import { SELECT_OPTIONS } from '../../constants'
+import { fetchUsersSuccess, setSearchCriteria, fetchRepositoriesSuccess, fetchData } from '../../redux/search/searchActions';
+import { isResultForQuery } from '../../utils'
+
 
 const StyledSelect = styled.select`
   padding: 9px;
@@ -14,14 +15,23 @@ const StyledSelect = styled.select`
   color:#888888;
 `
 
-const SelectDropDown = () => {
-  const { criteria, query } = useSelector(state => state.search)
+interface Props {
+  query: string;
+  criteria: string;
+  users: Array<object>;
+  repositories: Array<object>;
+}
+
+const SelectDropDown = ({ users, repositories, query, criteria }: Props) => {
   const dispatch = useDispatch()
 
   const handleChange = (event: Event) => {
-    dispatch(setSearchCriteria(event.target.value))
+    const { value } = event.target;
+    dispatch(setSearchCriteria(value))
     if (query.length >= 3) {
-      dispatch(fetchData(query, event.target.value))
+      if (!isResultForQuery(value, query, users, repositories)) {
+        dispatch(fetchData(query, value))
+      }
     } else {
       resetData()
     }
