@@ -4,6 +4,7 @@ import { isEqual, map } from 'lodash'
 import UserGrid from './UserGrid'
 import RepositoryGrid from './RepositoryGrid'
 import { USERS } from "../../constants"
+import { StyledProp } from '../../interfaces'
 
 const StyledGridContainer = styled.div`
   display: grid;
@@ -12,7 +13,7 @@ const StyledGridContainer = styled.div`
   }
   grid-template-columns: auto auto auto;
   grid-gap: 20px;
-  ${({ data }) => data.length && `
+  ${({ data }: StyledProp) => data.length && `
      height: 75vh;
      overflow-y: auto;
   `}
