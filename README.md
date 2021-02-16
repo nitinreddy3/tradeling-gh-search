@@ -41,3 +41,6 @@
 ```js
 $ npm run test
 ```
+
+## Next Steps
+- Taking project to another level
